@@ -1,0 +1,162 @@
+@model FilmesApp.Models.Filme
+@{
+    ViewBag.Title = "Excluir Filme";
+}
+
+<div class="delete-container">
+
+    <div class="delete-card">
+
+        <h1 class="delete-title">Excluir Filme</h1>
+
+        <div class="delete-content">
+            
+            <img src="@Model.PosterPath" 
+                 class="delete-poster"
+                 onerror="this.src='/images/no-poster.png';" />
+
+            <div class="delete-info">
+                <p class="delete-warning">
+                    Tem certeza que deseja remover o filme:
+                </p>
+
+                <h2 class="delete-movie-title">@Model.Titulo</h2>
+
+                <p class="delete-sinopse">
+                    @((!string.IsNullOrEmpty(Model.Sinopse) && Model.Sinopse.Length > 200) 
+                        ? Model.Sinopse.Substring(0, 200) + "..."
+                        : Model.Sinopse)
+                </p>
+
+                <form asp-action="Delete" method="post" class="delete-form">
+                    <input type="hidden" name="id" value="@Model.Id"/>
+
+                    <button class="btn-delete-confirm" type="submit">
+                        Confirmar Exclusão
+                    </button>
+
+                    <a class="btn-delete-cancel" href="@Url.Action("Index")">
+                        Cancelar
+                    </a>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #000000;
+    }
+.delete-container {
+	        display: flex;
+	        justify-content: center;
+	        padding: 40px 20px;
+	        background: #000000;
+	        min-height: 100vh;
+	        width: 100%;
+	        box-sizing: border-box;
+	    }
+
+    /* CARD */
+    .delete-card {
+        background: #181818;
+        padding: 35px;
+        width: 100%;
+        max-width: 820px;
+        border-radius: 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+        animation: fadeIn .4s ease;
+    }
+
+    /* TÍTULO */
+.delete-title {
+	        color: #ffffff;
+        font-size: 28px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    /* CONTEÚDO */
+    .delete-content {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    /* POSTER */
+    .delete-poster {
+        width: 230px;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.6);
+    }
+
+    /* INFO DO FILME */
+    .delete-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+.delete-warning {
+	        color: #aaaaaa;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+.delete-movie-title {
+	        color: #ffffff;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+.delete-sinopse {
+	        color: #999999;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    /* BOTÕES */
+.btn-delete-confirm {
+	        background-color: #E50914;
+	        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 30px;
+        border: none;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s;
+        margin-right: 10px;
+    }
+
+.btn-delete-confirm:hover {
+	        background-color: #cc0000;
+        transform: translateY(-2px);
+    }
+
+.btn-delete-cancel {
+	        background: #282828;
+	        color: #999999;
+        padding: 12px 20px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: .3s;
+    }
+
+.btn-delete-cancel:hover {
+	        background: #383838;
+	        color: #ffffff;
+    }
+    
+</style>

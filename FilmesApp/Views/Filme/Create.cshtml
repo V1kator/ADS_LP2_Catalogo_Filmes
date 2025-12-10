@@ -1,0 +1,159 @@
+@model FilmesApp.DTOs.FilmeCreateDto
+@{
+    ViewBag.Title = "Criar Filme";
+}
+
+<div class="create-container">
+
+    <div class="create-card">
+        <h1 class="create-title">Adicionar Novo Filme</h1>
+
+        <form asp-action="Create" method="post" class="create-form">
+
+            <div class="form-group-dark">
+                <label>Título</label>
+                <input asp-for="Titulo" class="input-dark" />
+                <span asp-validation-for="Titulo" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group-dark">
+                <label>Sinopse</label>
+                <textarea asp-for="Sinopse" class="input-dark textarea-dark"></textarea>
+            </div>
+
+            <div class="form-group-dark">
+                <label>Data de Lançamento</label>
+                <input type="date" asp-for="DataLancamento" class="input-dark" />
+            </div>
+
+            <div class="form-group-dark">
+                <label>Idioma Original</label>
+                <input asp-for="IdiomaOriginal" class="input-dark" />
+            </div>
+
+            <div class="form-group-dark">
+                <label>Avaliação</label>
+                <input asp-for="Avaliacao" class="input-dark" />
+            </div>
+
+            <div class="form-group-dark">
+                <label>Poster URL</label>
+                <input asp-for="PosterPath" class="input-dark" />
+            </div>
+
+            <div class="form-group-dark">
+                <label>Latitude</label>
+                <input asp-for="Latitude" class="input-dark" />
+            </div>
+
+            <div class="form-group-dark">
+                <label>Longitude</label>
+                <input asp-for="Longitude" class="input-dark" />
+            </div>
+
+            <button class="btn-action-create" type="submit">Criar Filme</button>
+
+        </form>
+    </div>
+
+</div>
+
+<style>
+    
+    body {
+        background: #121212;
+        color: #E0E0E0;
+        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+                  
+    .create-container {
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+        min-height: 100vh;
+        background: #121212;
+    }
+    
+    .create-card {
+        background: rgba(30, 30, 30, 0.7); 
+        backdrop-filter: blur(10px); 
+        padding: 35px;
+        width: 100%;
+        max-width: 600px; 
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08); 
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        animation: fadeIn .4s ease;
+    }
+    
+    .create-title {
+        color: #FFFFFF;
+        font-size: 2.2rem; 
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-align: center;
+        text-shadow: 0 0 8px rgba(229, 9, 20, 0.4);
+    }
+    
+    .form-group-dark {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px; 
+    }
+
+    .form-group-dark label {
+        color: #E0E0E0;
+        font-weight: 500;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+    
+    .input-dark {
+        background: #1E1E1E; 
+        color: #E0E0E0;
+        border: 1px solid #333333; 
+        padding: 12px 14px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .input-dark:focus {
+        border-color: #E50914; 
+        outline: none;
+        background: #252525;
+        box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.3);
+    }
+    
+    .textarea-dark {
+        height: 100px; 
+        resize: vertical;
+    }
+    
+    .btn-action-create {
+        width: 100%;
+        background-color: #E50914; 
+        color: #fff;
+        padding: 14px 20px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 12px; 
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-action-create:hover {
+        background-color: #B9090B; 
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+    }
+
+    .text-danger {
+        color: #ff4d4d !important; 
+        margin-top: 5px;
+        font-size: 0.85rem;
+    }
+</style>

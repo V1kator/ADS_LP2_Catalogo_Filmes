@@ -1,0 +1,252 @@
+@model IEnumerable<FilmesApp.Models.Filme>
+@{
+    ViewBag.Title = "Catálogo de Filmes";
+}
+
+<div class="cinema-container">
+
+    <!-- HERO CINEMA -->
+    <section class="cinema-hero">
+
+        <div class="cinema-hero-bg"></div>
+
+        <div class="cinema-hero-content container">
+
+            <!-- Poster destaque -->
+            <div class="hero-poster">
+                <img src="https://i.pinimg.com/originals/57/29/ab/5729ab5ed3bf1bc9b588676b823576cb.png" />
+            </div>
+            
+            <div class="hero-info">
+                <h1 class="hero-title">Seu Catálogo de Filmes</h1>
+
+                <div class="hero-tags">
+                    <span>Confiável</span>
+                    <span>100% Atualizado</span>
+                </div>
+
+                <p class="hero-description">
+                    Explore, gerencie e descubra seus filmes favoritos em uma experiência moderna,
+                    inspirada nos grandes catálogos de cinema.
+                </p>
+
+                <div class="hero-meta">
+                    <span>🎞 + 1.000 usuários</span>
+                    <span>⭐ 9.1/10</span>
+                </div>
+
+                <div class="hero-actions">
+                    <a class="btn-main" href="@Url.Action("Search")">▶ Buscar no TMDb</a>
+                    <a class="btn-outline" href="@Url.Action("Create")">+ Criar Filme</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="movies-section container">
+
+        <div class="movies-header">
+            <h2>🎬 Em Cartaz</h2>
+
+            <div class="movies-actions">
+                <a class="btn-main" href="@Url.Action("ExportCsv")">CSV</a>
+                <a class="btn-outline" href="@Url.Action("ExportExcel")">Excel</a>
+            </div>
+        </div>
+
+        <div class="movies-grid">
+            @foreach (var filme in Model)
+            {
+                <div class="movie-card">
+                    @await Html.PartialAsync("../Partial/_MovieCard", filme)
+                </div>
+            }
+        </div>
+
+    </section>
+
+</div>
+
+<style>
+    body {
+        background: linear-gradient(180deg, #111 0%, #0b0b0b 100%);
+        color: #e5e5e5;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .cinema-container {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .cinema-hero {
+        position: relative;
+        height: 520px;
+        border-radius: 20px;
+        margin: 40px auto 0;
+        max-width: 1200px;
+        background: #111;
+        overflow: hidden;
+    }
+
+    .cinema-hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(to right, #111 35%, rgba(0,0,0,0.3) 60%),
+            url('https://wallpapercave.com/wp/wp4069380.jpg') center/cover no-repeat;
+        opacity: .8;
+    }
+
+    .cinema-hero-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .hero-poster img {
+        height: 360px;
+        border-radius: 14px;
+        box-shadow: 0 25px 60px rgba(0,0,0,.8);
+    }
+
+    .hero-info {
+        max-width: 520px;
+    }
+
+    .hero-year {
+        font-size: 14px;
+        color: #aaa;
+    }
+
+    .hero-title {
+        font-size: 42px;
+        font-weight: 800;
+        margin: 10px 0;
+    }
+
+    .hero-tags {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .hero-tags span {
+        border: 1px solid #444;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+        color: #ccc;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .hero-meta {
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 12px;
+    }
+
+    .btn-main {
+        background: #e50914;
+        color: #fff;
+        padding: 14px 34px;
+        border-radius: 40px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: .2s;
+    }
+
+    .btn-main:hover {
+        background: #ff1e28;
+    }
+
+    .btn-outline {
+        border: 1px solid #666;
+        color: #ddd;
+        padding: 14px 30px;
+        border-radius: 40px;
+        text-decoration: none;
+    }
+
+
+    .movies-section {
+        margin-top: 60px;
+        max-width: 1200px;
+    }
+
+    .movies-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .movies-header h2 {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .movies-actions a {
+        margin-left: 15px;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .movies-actions a:hover {
+        color: #ffff;
+    }
+
+    .movies-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 24px;
+    }
+
+
+    .movie-card {
+        background: #141414;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: .25s;
+        cursor: pointer;
+    }
+
+    .movie-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 40px rgba(0,0,0,.8);
+    }
+
+    .movie-card img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+    }
+
+    .movie-card h3 {
+        color: #fff;
+        font-size: 14px;
+        padding: 8px 10px 0;
+    }
+
+    .movie-card small {
+        font-size: 12px;
+        color: #aaa;
+        padding: 0 10px 10px;
+    }
+</style>

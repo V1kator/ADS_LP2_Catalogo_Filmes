@@ -1,0 +1,126 @@
+@model FilmesApp.DTOs.FilmeEditDto
+@{
+    ViewBag.Title = "Editar Filme";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow form-card p-4">
+        <h2 class="text-center mb-4 fw-bold">Editar Filme</h2>
+
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id"/>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Título</label>
+                <input asp-for="Titulo" class="form-control custom-input"/>
+                <span asp-validation-for="Titulo" class="validation"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Sinopse</label>
+                <textarea asp-for="Sinopse" class="form-control custom-input"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Data de Lançamento</label>
+                <input type="date" asp-for="DataLancamento" class="form-control custom-input"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Idioma Original</label>
+                <input asp-for="IdiomaOriginal" class="form-control custom-input"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Avaliação</label>
+                <input asp-for="Avaliacao" class="form-control custom-input"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Poster URL</label>
+                <input asp-for="PosterPath" class="form-control custom-input"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Latitude</label>
+                <input asp-for="Latitude" class="form-control custom-input"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Longitude</label>
+                <input asp-for="Longitude" class="form-control custom-input"/>
+            </div>
+
+            <button class="btn main-btn w-100 mt-3" type="submit">
+                Salvar Alterações
+            </button>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background: radial-gradient(circle at top, #1a1a1a, #000);
+    }
+
+    .form-card {
+        width: 520px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
+        box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+        color: #fff;
+    }
+
+    h2 {
+        color: #fff;
+        letter-spacing: 1px;
+    }
+
+    .form-label {
+        color: #ddd;
+    }
+
+    .custom-input {
+        border-radius: 10px;
+        border: 1px solid #333;
+        background-color: #0b0b0b;
+        color: #fff;
+        padding: 10px 14px;
+        transition: 0.3s;
+    }
+
+    .custom-input::placeholder {
+        color: #777;
+    }
+
+    .custom-input:focus {
+        background-color: #0b0b0b;
+        border-color: #ff0000;
+        box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.25);
+        color: #fff;
+    }
+
+    .validation {
+        color: #ff4d4d;
+        font-size: 0.85rem;
+    }
+
+    .main-btn {
+        background: linear-gradient(135deg, #ff0000, #b30000);
+        color: white;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: 0.3s;
+        border: none;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .main-btn:hover {
+        background: linear-gradient(135deg, #ff1a1a, #cc0000);
+        transform: translateY(-2px);
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    }
+</style>
+

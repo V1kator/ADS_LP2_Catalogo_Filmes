@@ -1,0 +1,223 @@
+@using FilmesApp.Services.Weather.Models
+@model (FilmesApp.Models.Filme?, FilmesApp.Models.TmdbDtos.MovieDetailsDto?, WeatherForecastDto?)
+
+@{
+    var local = Model.Item1;
+    var tmdb = Model.Item2;
+    var weather = Model.Item3;
+
+    var title = local?.Titulo ?? tmdb?.Title ?? "Detalhes";
+    var poster = local?.PosterPath ?? tmdb?.PosterPath ?? "/images/no-poster.png";
+    var sinopse = local?.Sinopse ?? tmdb?.Overview ?? "Sem sinopse disponível.";
+    var nota = local?.Avaliacao ?? tmdb?.VoteAverage ?? 0;
+    var idioma = local?.IdiomaOriginal ?? tmdb?.OriginalLanguage ?? "Não informado";
+    var data = local?.DataLancamento.ToShortDateString() ?? tmdb?.ReleaseDate ?? "Não informado";
+}
+
+<section class="cinema-wrapper">
+
+    <div class="cinema-bg" style="background-image:url('@poster')"></div>
+
+    <div class="cinema-container">
+
+        <div class="cinema-poster">
+            <img src="@poster" />
+        </div>
+
+        <div class="cinema-info">
+            <h1>@title</h1>
+
+            <div class="cinema-meta">
+                <span class="badge-red">⭐ @nota</span>
+                <span>@idioma.ToUpper()</span>
+                <span>@data</span>
+            </div>
+
+            <p>@sinopse</p>
+
+            <div class="cinema-actions">
+                <a class="btn-main" href="@Url.Action("Edit", new { id = local?.Id ?? 0 })">Editar</a>
+                <a class="btn-outline" href="@Url.Action("Delete", new { id = local?.Id ?? 0 })">Excluir</a>
+                <a class="btn-outline" href="@Url.Action("Index")">Voltar</a>
+            </div>
+        </div>
+
+        <div class="cinema-panel">
+            <h4>Sessão</h4>
+
+            <div class="cinema-date">📅 @DateTime.Now.ToShortDateString()</div>
+
+            <div class="cinema-quality">
+                <span class="active">2D</span>
+                <span>3D</span>
+            </div>
+
+            <div class="cinema-price">
+                <small>Valor</small>
+                <strong>R$ 45,00</strong>
+            </div>
+
+            <a class="btn-main w-100 text-center mt-3">Comprar</a>
+        </div>
+
+    </div>
+</section>
+
+<section class="container weather-section">
+    <div class="weather-card">
+        <h3>🌤 Previsão do tempo</h3>
+
+        @if (weather == null || weather.Daily == null)
+        {
+            <div class="alert alert-info mt-3">
+                Não foi possível obter previsão. @(ViewBag.WeatherMessage ?? "")
+            </div>
+        }
+        else
+        {
+            @await Html.PartialAsync("../Partial/_WeatherBlock", weather)
+        }
+    </div>
+</section>
+
+<style>
+    body {
+        background: #0b0b0b;
+        color: #e5e5e5;
+    }
+
+    .cinema-wrapper {
+        position: relative;
+        min-height: 600px;
+        margin: 40px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #111;
+    }
+
+    .cinema-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        filter: blur(18px) brightness(.3);
+    }
+
+    .cinema-container {
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 220px 1fr 260px;
+        gap: 40px;
+        padding: 40px;
+    }
+
+    .cinema-poster img {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0,0,0,.9);
+    }
+
+    .cinema-info h1 {
+        font-size: 36px;
+        font-weight: 800;
+    }
+
+    .cinema-meta {
+        display: flex;
+        gap: 14px;
+        margin: 12px 0 20px;
+        font-size: 14px;
+    }
+
+    .badge-red {
+        background: #e50914;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    .cinema-info p {
+        max-width: 580px;
+        line-height: 1.6;
+        opacity: .9;
+    }
+
+    /* BOTÕES */
+    .cinema-actions {
+        margin-top: 25px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .btn-main {
+        background: #e50914;
+        color: #fff;
+        padding: 12px 26px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .btn-main:hover {
+        background: #f6121d;
+    }
+
+    .btn-outline {
+        border: 1px solid #aaa;
+        color: #eee;
+        padding: 12px 26px;
+        border-radius: 40px;
+        text-decoration: none;
+    }
+
+    .btn-outline:hover {
+        background: rgba(255,255,255,.1);
+    }
+
+    .cinema-panel {
+        background: rgba(0,0,0,.6);
+        border-radius: 18px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        box-shadow: 0 0 40px rgba(0,0,0,.8);
+    }
+
+    .cinema-panel h4 {
+        font-weight: 700;
+    }
+
+    .cinema-quality span {
+        padding: 6px 14px;
+        border-radius: 14px;
+        background: #333;
+        font-size: 13px;
+        margin-right: 6px;
+        cursor: pointer;
+    }
+
+    .cinema-quality .active {
+        background: #e50914;
+    }
+
+    .cinema-price small {
+        display: block;
+        opacity: .7;
+    }
+
+    .cinema-price strong {
+        font-size: 22px;
+    }
+
+    .weather-card {
+        background: #141414;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 20px 50px rgba(0,0,0,.8);
+        margin-bottom: 60px;
+    }
+</style>
+
+
