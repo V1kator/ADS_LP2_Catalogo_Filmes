@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmesApp", "FilmesApp\FilmesApp.csproj", "{934168AE-57C0-49F7-BBB4-959A2B33A3B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmesApp", "FilmesApp\FilmesApp.csproj", "{CC4A3C0A-86B2-4742-AC36-F9247A9A935F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{934168AE-57C0-49F7-BBB4-959A2B33A3B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{934168AE-57C0-49F7-BBB4-959A2B33A3B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{934168AE-57C0-49F7-BBB4-959A2B33A3B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{934168AE-57C0-49F7-BBB4-959A2B33A3B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC4A3C0A-86B2-4742-AC36-F9247A9A935F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC4A3C0A-86B2-4742-AC36-F9247A9A935F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC4A3C0A-86B2-4742-AC36-F9247A9A935F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC4A3C0A-86B2-4742-AC36-F9247A9A935F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
