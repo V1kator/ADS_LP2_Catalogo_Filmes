@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace FilmesApp.Models.TmdbDtos
 {
-    // DTO para resultado da busca /search/movie
+    
     public class SearchResultDto
     {
         [JsonPropertyName("page")] public int Page { get; set; }
@@ -15,7 +15,7 @@ namespace FilmesApp.Models.TmdbDtos
         [JsonPropertyName("total_pages")] public int TotalPages { get; set; }
     }
 
-    // DTO interno para cada filme nos resultados
+    
     public class MovieItemDto
     {
         [JsonPropertyName("id")] public int Id { get; set; }
