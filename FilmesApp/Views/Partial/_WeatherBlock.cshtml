@@ -1,0 +1,36 @@
+@model FilmesApp.Services.Weather.Models.WeatherForecastDto
+@{
+    var daily = Model.Daily;
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Previsão diária</h5>
+        @if (daily?.Time != null && daily.TemperatureMax != null && daily.TemperatureMin != null)
+        {
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Min (°C)</th>
+                    <th>Max (°C)</th>
+                </tr>
+                </thead>
+                <tbody>
+                @for (int i = 0; i < daily.Time.Count; i++)
+                {
+                    <tr>
+                        <td>@daily.Time[i]</td>
+                        <td>@daily.TemperatureMin[i]</td>
+                        <td>@daily.TemperatureMax[i]</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+    {
+            <div class="alert alert-info">Sem dados de previsão.</div>
+        }
+    </div>
+</div>
