@@ -17,14 +17,14 @@ namespace FilmesApp.Utils
     /// </summary>
     public static class CsvExcelExporter
     {
-        // Gera bytes CSV
+        
         public static byte[] ExportToCsvBytes(IEnumerable<Filme> filmes)
         {
             using var ms = new MemoryStream();
             using var sw = new StreamWriter(ms, Encoding.UTF8, leaveOpen: true);
             using var csv = new CsvWriter(sw, CultureInfo.InvariantCulture);
 
-            // Cabeçalho e registros
+            
             csv.WriteField("Id");
             csv.WriteField("TmdbId");
             csv.WriteField("Titulo");
