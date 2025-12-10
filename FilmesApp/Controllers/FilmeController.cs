@@ -15,10 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace FilmesApp.Controllers
 {
-    /// <summary>
-    /// Controller principal para gerenciamento do catálogo de filmes.
-    /// Contém Index, Search (TMDb), Import, Details (com previsão), Create/Edit/Delete, Export CSV/Excel.
-    /// </summary>
+   
     public class FilmeController : Controller
     {
         private readonly IFilmeRepository _repo;
