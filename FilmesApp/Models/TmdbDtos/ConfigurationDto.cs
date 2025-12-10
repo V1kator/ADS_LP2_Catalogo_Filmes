@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace FilmesApp.Models.TmdbDtos
 {
-    // DTO para /configuration
+    
     public class ConfigurationDto
     {
         [JsonPropertyName("images")] public ImagesConfig? Images { get; set; }
