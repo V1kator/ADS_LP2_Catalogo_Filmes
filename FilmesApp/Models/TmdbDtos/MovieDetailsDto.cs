@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace FilmesApp.Models.TmdbDtos
 {
-    // DTO para /movie/{id}
+    
     public class MovieDetailsDto
     {
         [JsonPropertyName("id")] public int Id { get; set; }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FilmesApp.DTOs
 {
-    // DTO para edição de filme existente
+    
     public class FilmeEditDto
     {
         public int Id { get; set; }

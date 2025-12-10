@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FilmesApp.DTOs
 {
-    // DTO para criação de filme manualmente
+    
     public class FilmeCreateDto
     {
         [Required] public string Titulo { get; set; } = string.Empty;
